@@ -1,0 +1,60 @@
+{
+  "news": {
+    "archive_at": null,
+    "created_at": "2023-03-31T08:34:59.568+02:00",
+    "created_by": 158,
+    "feeded": true,
+    "group_ref": [],
+    "group_ref_ids": [],
+    "localized_news_attributes": [
+      {
+        "title": "This is test.",
+        "content": "\u003cp\u003eThis is test news, This is test news, This is test news, This is test news, This is test news, This is test news, This is test news, This is test news, This is test news, This is test news, This is test news, \u003c/p\u003e",
+        "locale": "en"
+      },
+      {
+        "title": "This is test.",
+        "content": "\u003cp\u003eThis is test news, This is test news, This is test news, This is test news, This is test news, This is test news, This is test news, This is test news, This is test news, This is test news, This is test news, \u003c/p\u003e",
+        "locale": "de"
+      },
+      {
+        "title": "This is test.",
+        "content": "\u003cp\u003eThis is test news, This is test news, This is test news, This is test news, This is test news, This is test news, This is test news, This is test news, This is test news, This is test news, This is test news, \u003c/p\u003e",
+        "locale": "fr"
+      }
+    ],
+    "notified": true,
+    "privacy_setting_attributes": {
+      "id": 2498,
+      "uuids": [],
+      "name": "anyone",
+      "news_id": 2307,
+      "created_at": "2023-03-31T08:34:59.837+02:00",
+      "updated_at": "2023-03-31T08:34:59.837+02:00"
+    },
+    "publish_at": "2023-03-31T06:34:59.568Z",
+    "ref_id": "2307",
+    "show_in_feed": true,
+    "status": "published",
+    "tags": ["General"],
+    "top_news": true,
+    "updated_at": "2023-03-31T08:35:00.041+02:00",
+    "updated_by": null,
+    "uuid": "782b6f40-03e3-4336-985d-f43289685f88",
+    "visibility": "users",
+    "created_at_in_words": "4 hours ago",
+    "current_locale_news_attributes": {
+      "_id": { "$oid": "64267f14c6da920001adc6d4" },
+      "content": "\u003cp\u003eThis is test news, This is test news, This is test news, This is test news, This is test news, This is test news, This is test news, This is test news, This is test news, This is test news, This is test news, \u003c/p\u003e",
+      "created_at": "2023-03-31T08:35:00.135+02:00",
+      "document_urls": [],
+      "locale": "en",
+      "news_id": 2307,
+      "photo_urls": [],
+      "ref_id": "6184",
+      "tags": [],
+      "title": "This is test.",
+      "updated_at": "2023-03-31T08:35:00.135+02:00"
+    }
+  }
+}

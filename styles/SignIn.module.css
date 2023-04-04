@@ -1,0 +1,38 @@
+.container{
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  height:100vh;
+  wigth:100vw;
+  background-color:#eee;
+}
+.form{
+  display: flex;
+  flex-direction: column;
+  margin-top: -20vh;
+  padding:40px 15px;
+  align-items: center;
+  justify-content: center;
+  background-color:#ddd;
+  border-radius:10px;
+}
+.user_input{
+  margin:10px;
+  padding:10px 8px;
+  border:0px;
+  border-radius:6px
+}
+.submit_btn{
+  border:0px;
+  border-radius:6px;
+  padding:8px 16px;
+  font-weight:800
+}
+.submit_btn:hover{
+  background-color:#00c853;
+  color:#fff;
+}
+.submit_btn:focus{
+  background-color:#00c853;
+  color:#fff;
+}
