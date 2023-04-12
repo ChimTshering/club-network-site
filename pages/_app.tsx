@@ -2,7 +2,7 @@ import type { AppProps } from "next/app";
 import "@/styles/globals.css";
 import { ReactElement, ReactNode, useEffect } from "react";
 import { NextPage } from "next";
-import {store} from '../redux/store'
+import { store } from "../redux/store";
 import { Provider } from "react-redux";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -22,9 +22,10 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     };
     importTE();
   }, []);
-  return getLayout(
+  return (
     <Provider store={store}>
-      <Component {...pageProps} />
+      {getLayout(
+      <Component {...pageProps} />)}
     </Provider>
   );
 }
