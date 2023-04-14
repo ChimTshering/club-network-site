@@ -13,7 +13,11 @@ export const FeedComposer = () => {
     <div className="w-full">
       <div className="bg-white rounded-lg p-3 m-5 mb-2 flex">
         <div className="w-16 h-16 m-2 rounded-full overflow-hidden relative">
-          <Image src={user?.photo_path? user.photo_path : naruto.src} alt="profile" fill />
+          <Image
+            src={user?.photo_path ? user.photo_path : naruto.src}
+            alt="profile"
+            fill
+          />
         </div>
         <div className="w-full px-5 flex flex-col justify-center">
           <input
@@ -21,11 +25,15 @@ export const FeedComposer = () => {
             placeholder="Write something....."
             className="border-2 p-2 rounded-md mb-2 outline-none"
             data-te-toggle="modal"
-            data-te-target="#exampleModalCenteredScrollable"
+            data-te-target="#createFeedModal"
             data-te-ripple-init
             data-te-ripple-color="light"
           />
-          <div className="flex">
+          <div
+            data-te-toggle="modal"
+            data-te-target="#createFeedModal"
+            className="flex"
+          >
             <div className="flex flex-wrap items-center px-2 gap-2">
               <AiFillCamera size={20} color="rgb(34 197 94)" />
               Photo
