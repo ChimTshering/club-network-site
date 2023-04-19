@@ -15,7 +15,7 @@ export const NavBar = () => {
   }, []);
   return (
     <div className="h-screen bg-white">
-      <div className="bg-slate-200 w-full content-center justify-center items-center flex flex-col flex-wrap h-1/3 pb-4">
+      <div className="bg-gray-200 w-full content-center justify-center items-center flex flex-col flex-wrap h-1/3 pb-4">
         <h4 className="text-center font-bold text-lg">{signedUser?.name}</h4>
         <p className="text-center text-xs">{signedUser?.email}</p>
         <p className="text-center text-xs font-bold">{signedUser?.role}</p>

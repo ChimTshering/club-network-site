@@ -1,11 +1,48 @@
-import Head from 'next/head'
-import { ReactElement } from 'react'
-import FeedsCard from '@/components/feed-card'
-import { FeedComposer } from '@/components/modals/feed-composer'
-import { NextPageWithLayout } from './_app'
-import Layout from './layout'
+import Head from "next/head";
+import { ReactElement, useEffect, useRef, useState } from "react";
+import FeedsCard from "@/components/feed-card";
+import { FeedComposer } from "@/components/modals/feed-composer";
+import { NextPageWithLayout } from "./_app";
+import Layout from "./layout";
+import { UseDispatch } from "@/redux/store";
+import { profile } from "./api/auth-api";
+import { SetUser } from "@/redux/features/authSlice";
+import { dummyFeeds } from "@/data/feeds";
+import { FeedObj } from "@/types/feeds_type_model";
+import { getFeeds } from "./api/feed-api";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import toast from "react-hot-toast";
 
-const Home:NextPageWithLayout=()=> {
+const Home: NextPageWithLayout = ({
+  data,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const [feeds, setFeeds] = useState<FeedObj[]>([]);
+  const [page, setPage] = useState<number>(2);
+  const dispatch = UseDispatch();
+  useEffect(() => {
+    if (data) {
+      setFeeds(data);
+    }
+    (async () => {
+      const res = await profile();
+      dispatch(SetUser(res));
+    })();
+  }, [dispatch, data]);
+  useEffect(() => {
+    const scrollFn = async () => {
+      if (typeof window !== "undefined") {
+        if (Math.abs(window.scrollY - window.innerHeight / 2) < 20) {
+          const res: FeedObj[] = await getFeeds(page);
+          if (res.length) {
+            setFeeds((pre) => [...pre, ...res]);
+            setPage((pre) => pre + 1);
+          }
+        }
+      }
+    };
+    window.addEventListener("scroll", scrollFn);
+    return () => window.removeEventListener("scroll", scrollFn);
+  }, [page]);
   return (
     <>
       <Head>
@@ -15,16 +52,31 @@ const Home:NextPageWithLayout=()=> {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="grid justify-center items-center w-full">
-        <div className='flex flex-col items-center'>
+        <div className="flex flex-col items-center">
           <FeedComposer />
-          <FeedsCard />
-          <FeedsCard />
+          {feeds.map((feed: FeedObj) => (
+            <FeedsCard feed={feed} key={feed.id} />
+          ))}
         </div>
       </main>
     </>
   );
-}
-Home.getLayout = function getLayout(Home:ReactElement){
-  return <Layout>{Home}</Layout>
-}
+};
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const data: FeedObj[] = await getFeeds(1);
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+  return {
+    props: {
+      data,
+    },
+  };
+};
+Home.getLayout = function getLayout(Home: ReactElement) {
+  return <Layout>{Home}</Layout>;
+};
 export default Home;

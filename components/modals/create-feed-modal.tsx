@@ -62,13 +62,29 @@ export default function CreateFeedModal() {
       }
     }
   };
+  const fileRemove =(document:Document)=>{
+    setDocs((files)=>(files.filter(doc=>((doc.name!==document.name) && (doc.size !== document.size)))))
+  }
+  const urlRemove=(url:string,type:string)=>{
+    switch(type){
+      case 'image':
+        setImages((imageurls)=>(imageurls.filter(image=>(image!==url))))
+        break;
+      case 'vedio':
+        setVideo((vedioutls)=>(vedioutls.filter(vediourl=>vediourl!==url)))
+        break;
+      default:
+        break;
+
+    }
+  }
   const addFeed = async()=>{
     if(user){
     const payload:FeedPostRequest = {actor:{image:user?.photo_path, name:user?.first_name, uuid:user.uuid},document_urls:docs, editable:false, hash_tags:[],image_urls:images,video_urls:video, ...formData}
   const res = await postFeed(payload)
-  console.log(res);
   }
   }
+  
   return (
     <>
       <div
@@ -116,14 +132,32 @@ export default function CreateFeedModal() {
                 onChange={(e) => handleFormData(e, "text_content")}
               />
               {images
-                ? images.map((url) => <DraftImage url={url} key={url} />)
+                ? images.map((url) => (
+                    <DraftImage
+                      url={url}
+                      key={url}
+                      onRemove={() => urlRemove(url,'image')}
+                    />
+                  ))
                 : null}
               {video
-                ? video.map((url) => <DraftVedio url={url} key={url} />)
+                ? video.map((url) => (
+                    <DraftVedio
+                      url={url}
+                      key={url}
+                      onRemove={() => urlRemove(url,'vedio')}
+                    />
+                  ))
                 : null}
               <div className="flex flex-wrap m-2">
                 {docs
-                  ? docs.map((doc) => <FileChip doc={doc} key={doc.src} />)
+                  ? docs.map((doc) => (
+                      <FileChip
+                        doc={doc}
+                        key={doc.src}
+                        onRemove={() => fileRemove(doc)}
+                      />
+                    ))
                   : null}
               </div>
             </div>
@@ -222,7 +256,7 @@ export default function CreateFeedModal() {
                 className="ml-1 inline-block rounded bg-green-500 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-green-400 focus:bg-green-500  focus:outline-none focus:ring-0 active:bg-green-500 disabled:bg-gray-200 disabled:text-gray-500"
                 data-te-ripple-init
                 data-te-ripple-color="light"
-                onClick={()=>addFeed()}
+                onClick={() => addFeed()}
                 // disabled
               >
                 POST

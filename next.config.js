@@ -9,6 +9,12 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "testasmpublic-14e65.kxcdn.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };

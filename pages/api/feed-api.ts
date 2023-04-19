@@ -37,15 +37,24 @@ export const uploadDocs = async (doc: File) => {
   const data = await res.json();
   return data;
 };
-export const postFeed = async(paload:FeedPostRequest)=>{
- const res = await fetch(
-   "https://seliseapp.club.selise.dev/api/v1/posts/posts",{
-    method:'POST',
-    credentials:'include',
-    body:JSON.stringify(paload),
-    headers:{'content-type':'application/json'}
-   }
- );
- const data = res.json()
- return data;
-}
+export const postFeed = async (paload: FeedPostRequest) => {
+  const res = await fetch(
+    "https://seliseapp.club.selise.dev/api/v1/posts/posts",
+    {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify(paload),
+      headers: { "content-type": "application/json" },
+    }
+  );
+  const data = res.json();
+  return data;
+};
+export const getFeeds = async (pageNo: number) => {
+  const res = await fetch(
+    `https://seliseapp.club.selise.dev/api/v1/feeds?query=&page=${pageNo}&hash_tag=&visibility=users&following_groups_ref=`,
+    { credentials: "include" }
+  );
+  const data = res.json();
+  return data;
+};

@@ -1,4 +1,5 @@
-[
+import {FeedObj} from "@/types/feeds_type_model";
+export const dummyFeeds:FeedObj[]=[
   {
     "verb": "create",
     "target": "cmr cmr published a News",
