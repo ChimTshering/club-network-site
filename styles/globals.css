@@ -72,22 +72,12 @@
     --card-border-rgb: 200, 200, 200;
   }
 }
-body{
-  margin:0px;
-  height:100vh;
-  width:100vw;
-  position:absolute;
-}
-main{
-  background-color:#eee;
-}
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

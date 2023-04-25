@@ -4,6 +4,8 @@ import {
   BiCommentAdd,
 } from "react-icons/bi";
 import {
+  AiFillDelete,
+  AiFillEdit,
   AiFillLike,
   AiOutlineLike,
 } from "react-icons/ai";
@@ -11,44 +13,42 @@ import {
   CiMenuKebab,
 } from "react-icons/ci";
 import naruto from '@/public/assets/download.jpeg'
-import styles from '@/styles/FeedsCard.module.css'
 
 export default function FeedsCard() {
   return (
-    <div className={styles.container}>
-      <div className={styles.feed_header}>
-        <div
-          style={{ display: "inline-flex", alignItems: "center", margin: 2 }}
-        >
-          <div className={styles.avatar}>
-            <Image src={naruto} alt="" height={50} />
+    <div className='bg-white m-5 py-4 rounded-2xl'>
+      <div className='flex justify-between px-3'>
+        <div className='flex gap-2'>
+          <div className='relative rounded-full overflow-hidden h-[50px] w-[50px] flex flex-wrap justify-center content-center'>
+            <Image src={naruto} alt="" fill />
           </div>
           <div>
-            <h5 className={styles.avatar_name}>USER NAME</h5>
-            <p className={styles.sub_data}>POSTED DATE</p>
+            <h5 className='font-bold'>USER NAME</h5>
+            <p className='text-xs text-gray-800'>POSTED DATE</p>
           </div>
         </div>
-        <div className={styles.header_icon}>
-          <CiMenuKebab size={24} color="#000s" />
+        <div className=''>
+          <CiMenuKebab size={24} color="#000s"/>
+          <div className='absolute bg-white p-4 rounded-md drop-shadow-lg m-1'>
+            <div className='flex gap-3'><AiFillEdit size={18} color="gray"/>Edit</div>
+            <div className='flex gap-3'><AiFillDelete size={18} color='gray'/>Delete</div>
+          </div>
         </div>
       </div>
-      <div style={{marginTop:10}}>
-        <p style={{ textAlign: "justify", marginInline: 10 }}>
+      <div className='mt-4'>
+        <p className='text-justify px-3'>
           FEED DESCRIPTION
         </p>
       </div>
-      <div className={styles.img_container}>
+      <div className=''>
         <Image src={naruto} alt="" width={600} />
       </div>
 
-      <div
-        className={styles.feed_header}
-        style={{ marginBottom: 10, paddingBlock: 10 }}
-      >
-        <div className={`${styles.icon_container} ${styles.bg_green}`}>
-          <BiCommentAdd size={24}/>
+      <div className='my-2 mx-4 flex flex-wrap justify-between'>
+        <div className=''>
+          <BiCommentAdd size={24} />
         </div>
-        <div className={`${styles.icon_container} ${styles.bg_green}`}>
+        <div className=''>
           <AiOutlineLike size={24} />
         </div>
       </div>
