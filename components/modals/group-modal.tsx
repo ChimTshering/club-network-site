@@ -47,16 +47,16 @@ const GroupModal = ({
 
           {/* <!--Modal body--> */}
           <div className="relative overflow-y-auto p-4">
-            <p>Selected Group ( 1 )</p>
+            {groupIds.length?<p>Selected Group ( {groupIds.length} )</p>:null}
             <div className="flex flex-wrap">
-              {data.filter().map((grp: Group) => (
+              {data ? data.filter((group:Group)=>groupIds.includes(group.uuid)).map((grp: Group) => (
                 <div key={grp.uuid}>
                   <GroupChip
                     group={grp}
                     handleRemove={() => removeGrp(grp.uuid)}
                   />
                 </div>
-              ))}
+              )):null}
             </div>
             {data ? (
               data.map((group: Group) => (
