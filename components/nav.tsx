@@ -23,7 +23,7 @@ export const NavBar = () => {
       <div className="flex flex-col h-auto">
         <div className="relative rounded-full flex flex-wrap justify-center items-center bg-white top-[-50px] self-center">
           <div className="relative rounded-full m-2 overflow-hidden h-24 w-24 ">
-            <Image src={`${signedUser?.photo_path ?signedUser.photo_path : naruto.src}`} alt="" fill />
+            <Image src={`${signedUser?.photo_path ?signedUser.photo_path : naruto.src}`} alt="" fill priority/>
           </div>
         </div>
       </div>

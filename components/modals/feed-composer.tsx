@@ -17,6 +17,7 @@ export const FeedComposer = () => {
             src={user?.photo_path ? user.photo_path : naruto.src}
             alt="profile"
             fill
+            priority
           />
         </div>
         <div className="w-full px-5 flex flex-col justify-center">

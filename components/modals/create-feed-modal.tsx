@@ -7,12 +7,14 @@ import { HiDocumentText } from "react-icons/hi";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { postFeed, uploadDocs, uploadPhoto, uploadVedio } from "@/pages/api/feed-api";
-import { Document, FeedPostRequest } from "@/types/feeds_type_model";
+import { Document, FeedObj, FeedPostRequest } from "@/types/feeds_type_model";
 import DraftImage from "../draft-image-card";
 import DraftVedio from "../draft-vedio-card";
 import FileChip from "../file-chip";
+
 export default function CreateFeedModal() {
   const user = useSelector((state: RootState) => state.auth.signed_in_user);
+  const feed = useSelector((state: RootState) => state.feed.feed);
   const [images, setImages] = useState<string[]>([]);
   const [video, setVideo] = useState<string[]>([]);
   const [docs, setDocs] = useState<Document[]>([]);
@@ -84,6 +86,7 @@ export default function CreateFeedModal() {
   const res = await postFeed(payload)
   }
   }
+  console.log(feed);
   
   return (
     <>
@@ -93,8 +96,9 @@ export default function CreateFeedModal() {
         id="createFeedModal"
         tabIndex={-1}
         aria-labelledby="exampleModalCenteredScrollable"
-        aria-modal="true"
-        role="dialog"
+        // aria-modal="true"
+        // role="dialog"
+        aria-hidden
       >
         <div
           data-te-modal-dialog-ref
@@ -136,7 +140,7 @@ export default function CreateFeedModal() {
                     <DraftImage
                       url={url}
                       key={url}
-                      onRemove={() => urlRemove(url,'image')}
+                      onRemove={() => urlRemove(url, "image")}
                     />
                   ))
                 : null}
@@ -145,7 +149,7 @@ export default function CreateFeedModal() {
                     <DraftVedio
                       url={url}
                       key={url}
-                      onRemove={() => urlRemove(url,'vedio')}
+                      onRemove={() => urlRemove(url, "vedio")}
                     />
                   ))
                 : null}
@@ -178,8 +182,13 @@ export default function CreateFeedModal() {
                   />
                   <label htmlFor="all">All</label>
                 </div>
-                <div className="border-gray-200 border p-3 rounded-lg w-[225px] flex items-center gap-2">
+                <div
+                  className="border-gray-200 border p-3 rounded-lg w-[225px] flex items-center gap-2"
+                  tabIndex={-1}
+                  >
                   <input
+                  data-te-toggle="modal"
+                  data-te-target="#groupModal"
                     type="radio"
                     name="visibility"
                     value="group"
@@ -189,6 +198,10 @@ export default function CreateFeedModal() {
                   />
                   <label htmlFor="group">Group</label>
                 </div>
+                {formData.visibility === "group" ? <div className="m-2">
+                  <p className="text-lg text-gray-700 m-2">Select group ( 0 )</p>
+                  <button className=" border py-1 px-5 rounded-md border-green-500 text-green-500" data-te-toggle='modal' data-te-target='#groupModal'>+ SELECT GROUP(S) </button>
+                  </div>:null}
               </div>
               <div className="flex mt-5 mb-3">
                 <div

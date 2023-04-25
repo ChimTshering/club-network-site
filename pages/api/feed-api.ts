@@ -1,3 +1,4 @@
+import {FeedObj} from "./../../types/feeds_type_model";
 import { FeedPostRequest } from "@/types/feeds_type_model";
 import { serialize } from "object-to-formdata";
 
@@ -58,3 +59,10 @@ export const getFeeds = async (pageNo: number) => {
   const data = res.json();
   return data;
 };
+export const updateFeed = async(id:string,payload:FeedObj)=>{
+  const res = await fetch(
+    `https://seliseapp.club.selise.dev/api/v1/posts/posts/${id}`,{method:'PUT',credentials:'include',body:serialize(payload)}
+  );
+  const data = res.json()
+  return data;
+}

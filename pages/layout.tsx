@@ -3,6 +3,7 @@ import { Header } from "@/components/header";
 import { NavBar } from "@/components/nav";
 import CreateFeedModal from "@/components/modals/create-feed-modal";
 import { Toaster } from "react-hot-toast";
+import GroupModal from "@/components/modals/group-modal";
 type Porps = {
   children: React.ReactNode;
 };
@@ -22,6 +23,7 @@ export default function Layout({ children }: Porps) {
         </div>
       </div>
       <CreateFeedModal />
+      <GroupModal/>
       <Toaster />
     </div>
   );

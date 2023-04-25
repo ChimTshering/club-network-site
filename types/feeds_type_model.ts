@@ -171,3 +171,21 @@ export type FeedObj = {
   mentions?:string[] | []
   id: string;
 };
+export type Group = {
+  _id:number;
+  _keywords:string[];
+  category:string[];
+  cover_photo:{original_url?:string; small?:string;medium?:string;large?:string}|null;
+  created_at:string;
+  creator_id:string;
+  description:string;
+followers:number
+name:string
+privacy:string
+profile_picture:{original_url:string;small:string; medium:string;
+large:string}|null;
+ref_id:string;
+updated_at:string
+uuid:string
+id:number
+}
