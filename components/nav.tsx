@@ -31,7 +31,7 @@ export const NavBar = () => {
         <Link
           href="/"
           className={`py-1 px-4 my-2 mr-3 rounded-r-2xl font-bold hover:bg-green-500 hover:text-white ${
-            activeURL.includes("") ? " bg-green-500 text-white" : ""
+            activeURL.includes(" ") ? " bg-green-500 text-white" : ""
           } `}
         >
           Feeds
@@ -39,7 +39,7 @@ export const NavBar = () => {
         <Link
           href="/group"
           className={`py-1 px-4 my-2 mr-3 rounded-r-2xl font-bold hover:bg-green-500 hover:text-white ${
-            activeURL.includes('group') ? " bg-green-500 text-white" : ""
+            activeURL.includes('news') ? " bg-green-500 text-white" : ""
           } `}
         >
           Group

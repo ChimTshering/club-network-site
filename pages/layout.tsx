@@ -16,7 +16,7 @@ export default function Layout({ children }: Porps) {
           <NavBar />
         </div>
         <div className="absolute top-0 right-0 w-3/4">
-          <div className="sticky z-20 top-0 bg-white">
+          <div className="sticky z-50 top-0 bg-white">
             <Header />
           </div>
           <div className="w-full h-full m-0 bg-gray-100">{children}</div>

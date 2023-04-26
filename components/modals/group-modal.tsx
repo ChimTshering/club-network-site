@@ -1,4 +1,6 @@
 import { getGroups } from "@/pages/api/group-api";
+import { setPostGroupIds } from "@/redux/features/feedSlice";
+import { UseDispatch } from "@/redux/store";
 import { Group } from "@/types/feeds_type_model";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import React, { useCallback, useState } from "react";
@@ -9,6 +11,7 @@ const GroupModal = ({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [groupIds, setGroupIds] = useState<string[]>([]);
+  const dispatch = UseDispatch()
   const handleGroupSelect = useCallback(
     (groupId: string) => {
       if (groupIds.includes(groupId)) {
@@ -22,6 +25,10 @@ const GroupModal = ({
   const removeGrp = useCallback((id: string) => {
     setGroupIds((pre) => pre.filter((grpId) => grpId !== id));
   }, []);
+  const handleGroupAdd=()=> {
+    dispatch(setPostGroupIds(groupIds))
+  }
+
   return (
     <div
       data-te-modal-init
@@ -96,8 +103,9 @@ const GroupModal = ({
               data-te-ripple-color="light"
               data-te-toggle="modal"
               data-te-target="#createFeedModal"
+              onClick={()=>handleGroupAdd()}
             >
-              Save changes
+               + Add
             </button>
           </div>
         </div>
