@@ -2,7 +2,8 @@ import {FeedObj} from "./../../types/feeds_type_model";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState:any={
-  feed:undefined
+  feed:undefined,
+  groupIds:undefined
 }
 
 export const feedSlice = createSlice({
@@ -15,8 +16,15 @@ export const feedSlice = createSlice({
       }else{
         state.feed =action.payload
       }
+    },
+    setPostGroupIds:(state,action:PayloadAction<string[] | undefined>)=>{
+      if(!action.payload){
+        state.groupIds=undefined
+      }else{
+        state.groupIds=action.payload
+      }
     }
   }
 })
-export const {feedStore} = feedSlice.actions
+export const {feedStore,setPostGroupIds} = feedSlice.actions
 export default feedSlice.reducer

@@ -7,7 +7,6 @@ import Layout from "./layout";
 import { UseDispatch } from "@/redux/store";
 import { profile } from "./api/auth-api";
 import { SetUser } from "@/redux/features/authSlice";
-import { dummyFeeds } from "@/data/feeds";
 import { FeedObj } from "@/types/feeds_type_model";
 import { getFeeds } from "./api/feed-api";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
