@@ -2,7 +2,6 @@ import React, { ReactElement, useCallback, useState } from "react";
 import { useRouter } from "next/router";
 import { ImClubs } from "react-icons/im";
 import { NextPageWithLayout } from "../_app";
-import {AppDispatch} from '../../redux/store'
 import Layout from "./layout";
 import { signInRequest } from "@/types/auth_type_model";
 import { SignInUser } from "../api/auth-api";
@@ -11,7 +10,7 @@ import { SetUser } from "@/redux/features/authSlice";
 
 const SignIn: NextPageWithLayout = () => {
   const router = useRouter();
-  const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useDispatch()
 
   const [data, setData] = useState({ email: "", password: "" });
 

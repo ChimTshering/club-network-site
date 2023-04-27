@@ -19,6 +19,7 @@ export type signInResponse = {
   id: number;
   last_name?: string;
   locale: string;
+  name:string;
   notification_setting?: {
     notify_new_news: boolean;
     notify_new_event: boolean;
