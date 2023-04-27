@@ -47,8 +47,6 @@ export default function FeedsCard({ feed }: props) {
   }, []);
   const handleEdit = ()=>{
     setFeedModal(true)
-    console.log('aaa');
-    
     // dispatch(feedStore(feed))
   }
   return (
