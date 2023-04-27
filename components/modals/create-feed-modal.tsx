@@ -86,8 +86,6 @@ export default function CreateFeedModal() {
   const res = await postFeed(payload)
   }
   }
-  console.log(feed);
-  
   return (
     <>
       <div
@@ -127,7 +125,9 @@ export default function CreateFeedModal() {
                 </div>
                 <p className="text-sm text-gray-600">{user?.first_name}</p>
               </div>
-              <textarea
+              <textarea 
+              // role="textbox"
+              data-testid='textarea'
                 name=""
                 id=""
                 // rows={6}
@@ -205,6 +205,7 @@ export default function CreateFeedModal() {
               </div>
               <div className="flex mt-5 mb-3">
                 <div
+                data-testid='image-upload'
                   className="flex flex-wrap items-center px-2 gap-2 cursor-pointer"
                   onClick={() => {
                     imageRef.current && imageRef.current.click();
