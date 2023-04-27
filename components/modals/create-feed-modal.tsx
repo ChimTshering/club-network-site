@@ -86,8 +86,6 @@ export default function CreateFeedModal() {
   const res = await postFeed(payload)
   }
   }
-  console.log(feed);
-  
   return (
     <>
       <div
