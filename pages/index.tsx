@@ -26,7 +26,7 @@ const Home: NextPageWithLayout = ({
     }
     (async () => {
       const res = await profile();
-      if(!res){
+      if(!res.uuid){
         router.push('/sign-in')
       }else {
       dispatch(SetUser(res));
