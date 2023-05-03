@@ -5,12 +5,14 @@ import { AiFillCamera } from "react-icons/ai";
 import { BsFillCameraVideoFill } from "react-icons/bs";
 import { HiDocumentText } from "react-icons/hi";
 import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-import { postFeed, uploadDocs, uploadPhoto, uploadVedio } from "@/pages/api/feed-api";
+import { RootState, UseDispatch } from "@/redux/store";
+import { getFeeds, postFeed, uploadDocs, uploadPhoto, uploadVedio } from "@/pages/api/feed-api";
 import { Document, FeedObj, FeedPostRequest } from "@/types/feeds_type_model";
 import DraftImage from "../draft-image-card";
 import DraftVedio from "../draft-vedio-card";
 import FileChip from "../file-chip";
+import { toast } from "react-hot-toast";
+import { feedStore } from "@/redux/features/feedSlice";
 
 export default function CreateFeedModal() {
   const user = useSelector((state: RootState) => state.auth.signed_in_user);
@@ -25,6 +27,7 @@ export default function CreateFeedModal() {
   const imageRef = useRef<HTMLInputElement | null>(null);
   const vedioRef = useRef<HTMLInputElement | null>(null);
   const docsRef = useRef<HTMLInputElement | null>(null);
+  const dispatch = UseDispatch()
 
   const handleFormData = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -84,6 +87,17 @@ export default function CreateFeedModal() {
     if(user){
     const payload:FeedPostRequest = {actor:{image:user?.photo_path, name:user?.first_name, uuid:user.uuid},document_urls:docs, editable:false, hash_tags:[],image_urls:images,video_urls:video, ...formData}
   const res = await postFeed(payload)
+  if(res.errors){
+    toast('Error Occured! Try creating New One.')
+  }
+  else {
+    const res = await getFeeds(1)
+    dispatch(feedStore(res))
+    setDocs(()=>[])
+    setVideo(()=>[])
+    setImages(()=>[])
+    setFormData(()=>({text_content:'',visibility:'users'}))
+  }
   }
   }
   return (
@@ -133,6 +147,7 @@ export default function CreateFeedModal() {
                 // rows={6}
                 placeholder={`Hi ${user?.first_name}, write something.... `}
                 className="outline-none min-h-[50px]"
+                value={formData.text_content}
                 onChange={(e) => handleFormData(e, "text_content")}
               />
               {images
@@ -271,6 +286,7 @@ export default function CreateFeedModal() {
                 data-te-ripple-init
                 data-te-ripple-color="light"
                 onClick={() => addFeed()}
+                data-te-modal-dismiss
                 // disabled
               >
                 POST

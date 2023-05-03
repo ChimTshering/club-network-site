@@ -11,12 +11,14 @@ import { FeedObj } from "@/types/feeds_type_model";
 import { getFeeds } from "./api/feed-api";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import toast from "react-hot-toast";
+import { useRouter } from "next/router";
 
 const Home: NextPageWithLayout = ({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [feeds, setFeeds] = useState<FeedObj[]>([]);
   const [page, setPage] = useState<number>(2);
+  const router = useRouter()
   const dispatch = UseDispatch();
   useEffect(() => {
     if (data) {
@@ -24,9 +26,12 @@ const Home: NextPageWithLayout = ({
     }
     (async () => {
       const res = await profile();
-      dispatch(SetUser(res));
+      if(res.uuid){
+      dispatch(SetUser(res));}else {
+        router.push('/sign-in')
+      }
     })();
-  }, [dispatch, data]);
+  }, [dispatch, data, router]);
   useEffect(() => {
     const scrollFn = async () => {
       if (typeof window !== "undefined") {
