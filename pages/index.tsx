@@ -26,9 +26,10 @@ const Home: NextPageWithLayout = ({
     }
     (async () => {
       const res = await profile();
-      if(res.uuid){
-      dispatch(SetUser(res));}else {
+      if(!res){
         router.push('/sign-in')
+      }else {
+      dispatch(SetUser(res));
       }
     })();
   }, [dispatch, data, router]);
