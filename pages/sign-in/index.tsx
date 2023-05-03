@@ -24,7 +24,7 @@ const SignIn: NextPageWithLayout = () => {
     e.preventDefault();
     const payload:signInRequest = {...data, profile_attributes:{locale:'en'}, remember_me:true, role_id:2}
     const response = await SignInUser(payload);
-    if(response.id){
+    if(response?.id){
       dispatch(SetUser(response))
       router.push("/");
     }

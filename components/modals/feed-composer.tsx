@@ -29,6 +29,7 @@ export const FeedComposer = () => {
             data-te-target="#createFeedModal"
             data-te-ripple-init
             data-te-ripple-color="light"
+            readOnly
           />
           <div
             data-te-toggle="modal"

@@ -16,7 +16,7 @@ useEffect(()=>{
   })()
 },[router.query])
   return (
-    <div className="w-full h-full">
+    <div className="w-full max-h-96 overflow-y-scroll no-scrollbar">
       <div className="relative grid grid-flow-row w-full p-3 border-b-[1px] border-gray-300">
         <p className="text-sm px-2 py-1 m-2 rounded-s-full rounded-e-full border border-green-400 w-max">
           TAGS
